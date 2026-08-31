@@ -6,7 +6,6 @@ public class CreatePrescriptionDto {
 	private String dosage;
 	private Integer quantity;
 	private Long medicalRecordId;
-	// burası recetenin eklenecegi muayene kaydı
 	
 	public CreatePrescriptionDto() {
 		
