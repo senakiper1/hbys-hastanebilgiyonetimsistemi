@@ -7,6 +7,5 @@ import entities.Patient;
 
 @Repository
 public interface IPatientRepository extends JpaRepository<Patient, String> {
-	// patient entitysi icin veritabanı sorgularını yönetir
 	
 }
