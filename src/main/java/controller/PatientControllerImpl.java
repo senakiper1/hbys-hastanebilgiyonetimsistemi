@@ -16,7 +16,6 @@ import dto.LoginRequestDto;
 import dto.PatientDto;
 import services.IPatientService;
 
-// dıs dunyadan gelen http isteklerini karsılar ve service katmanına yonlendirir
 
 @RestController
 @RequestMapping("/rest/api/patient")
