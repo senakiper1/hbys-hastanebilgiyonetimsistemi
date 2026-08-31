@@ -1,7 +1,7 @@
 package dto;
 
 public class CreatePatientDto {
-// yeni hasta kaydolurken 
+
     private String nationalId;
     private String firstName;
     private String lastName;
