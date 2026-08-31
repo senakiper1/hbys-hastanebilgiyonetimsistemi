@@ -33,10 +33,4 @@ public class AnalyticsServiceImpl implements IAnalyticsService {
 
         return new DashboardSummaryDto(totalPatients, totalDoctors, totalAppointments, totalMedicalRecords);
     }
-
-  /*  @Override
-    public Object getSummaryData() {
-        return getSummary(); // Ya da gereksizse interface'den ve buradan kaldırabilirsin
-    } */
-    
 }
