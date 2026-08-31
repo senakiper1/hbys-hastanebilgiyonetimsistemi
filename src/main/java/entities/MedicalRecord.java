@@ -30,11 +30,9 @@ public class MedicalRecord {
     @OneToOne
     @JoinColumn(name = "appointment_id", nullable = false)
     private Appointment appointment;
-    // muayene kaydı dogrudan 1 randevuya baglıdır
 
     @OneToMany(mappedBy = "medicalRecord", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Prescription> prescriptions = new ArrayList<>();
-    // 1 muayene kaydına birden fazla receteli ilac yazılabilir
     
     public MedicalRecord() {
     }
@@ -49,11 +47,6 @@ public class MedicalRecord {
         this.appointment = appointment;
     }
 
-
-    /**
-     * Reçete ekleme yardımcısı:
-     * Listeye reçete eklerken, eklenen Reçetenin de medicalRecord alanını bu nesneye bağlar.
-     */
     public void addPrescription(Prescription prescription) {
         if (prescription != null) {
             prescriptions.add(prescription);
@@ -61,11 +54,6 @@ public class MedicalRecord {
         }
     }
 
-    /**
-     * Reçete çıkarma yardımcısı:
-     * Listeden reçete çıkarırken, çıkarılan Reçetenin medicalRecord bağını koparır.
-     * orphanRemoval = true olduğu için bu reçete DB'den de silinir.
-     */
     public void removePrescription(Prescription prescription) {
         if (prescription != null) {
             prescriptions.remove(prescription);
