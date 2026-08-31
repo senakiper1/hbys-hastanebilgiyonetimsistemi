@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHRS - Ankara Etlik Şehir Hastanesi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<i class="fa-solid fa-spa bg-decor" style="top: 8%; left: 4%; font-size: 85px; animation-delay: 0s;"></i>
+<i class="fa-solid fa-heart bg-decor" style="top: 18%; right: 6%; font-size: 65px; animation-delay: 1.5s;"></i>
+<i class="fa-solid fa-stethoscopes bg-decor" style="top: 38%; left: 3%; font-size: 75px; animation-delay: 0.8s;"></i>
+<i class="fa-solid fa-user-doctor bg-decor" style="top: 42%; right: 4%; font-size: 80px; animation-delay: 2.2s;"></i>
+<i class="fa-solid fa-capsules bg-decor" style="bottom: 35%; left: 5%; font-size: 70px; animation-delay: 1.2s;"></i>
+<i class="fa-solid fa-hospital-user bg-decor" style="bottom: 38%; right: 5%; font-size: 75px; animation-delay: 2.7s;"></i>
+<i class="fa-solid fa-clover bg-decor" style="bottom: 10%; left: 8%; font-size: 90px; animation-delay: 3s;"></i>
+<i class="fa-solid fa-seedling bg-decor" style="bottom: 12%; right: 8%; font-size: 80px; animation-delay: 2s;"></i>
+<i class="fa-solid fa-laptop-medical bg-decor" style="top: 68%; left: 12%; font-size: 60px; animation-delay: 0.4s;"></i>
+<i class="fa-solid fa-kit-medical bg-decor" style="top: 65%; right: 12%; font-size: 65px; animation-delay: 1.8s;"></i>
+<i class="fa-solid fa-heart-pulse bg-decor" style="top: 28%; left: 14%; font-size: 55px; animation-delay: 2.5s;"></i>
+<i class="fa-solid fa-syringe bg-decor" style="top: 25%; right: 15%; font-size: 50px; animation-delay: 1.1s;"></i>
+
+<header class="mhrs-header mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+            <div class="p-2 bg-white rounded-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 50px; height: 50px;">
+                <i class="fa-solid fa-hospital fa-2x" style="color: #db2777;"></i>
+            </div>
+            <div>
+                <h4 class="m-0 fw-extrabold tracking-tight">T.C. SAĞLIK BAKANLIĞI</h4>
+                <small class="opacity-90 fw-medium">Ankara Etlik Şehir Hastanesi MHRS Portalı</small>
+            </div>
+        </div>
+        
+        <div class="d-flex align-items-center gap-2">
+           
+            <div class="dropdown me-1">
+                <button class="btn btn-outline-light btn-sm rounded-circle position-relative p-2" id="notifDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false" style="width: 38px; height: 38px;">
+                    <i class="fa-solid fa-bell"></i>
+                    <span id="notifBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-light" style="font-size: 10px;">
+                        0
+                    </span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end notification-dropdown" aria-labelledby="notifDropdownBtn">
+                    <div class="p-3 border-bottom d-flex justify-content-between align-items-center" style="background: rgba(219, 39, 119, 0.05);">
+                        <h6 class="m-0 fw-bold text-primary"><i class="fa-solid fa-bell me-2"></i>Bildirimler</h6>
+                        <button class="btn btn-link btn-sm text-decoration-none text-muted p-0" style="font-size: 11px;" onclick="markAllNotificationsAsRead()">Tümünü Oku</button>
+                    </div>
+                    <div id="notificationList">
+                       
+                    </div>
+                </div>
+            </div>
+
+          
+            <button id="themeToggleBtn" class="btn btn-outline-light btn-sm rounded-pill px-3 me-2" onclick="toggleDarkMode()">
+                <i class="fa-solid fa-moon me-1"></i> <span id="themeBtnText">Karanlık Mod</span>
+            </button>
+
+            <div id="userInfoHeader" class="d-none align-items-center gap-3">
+                <div class="user-avatar" id="headerAvatar">--</div>
+                <span class="fw-bold me-2" id="headerPatientName"></span>
+                <button class="btn btn-outline-light btn-sm rounded-pill px-3" onclick="logout()"><i class="fa-solid fa-right-from-bracket me-1"></i> Çıkış Yap</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container pb-5">
+
+  
+    <div id="authSection" class="row justify-content-center mt-5 animated-tab">
+        <div class="col-md-6 col-lg-5">
+            <div class="card card-custom p-4 p-md-5">
+                
+                <ul class="nav nav-pills nav-justified mb-4" id="authTabs">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="loginTabBtn" onclick="toggleAuthMode('login')"><i class="fa-solid fa-right-to-bracket me-2"></i>Giriş Yap</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="registerTabBtn" onclick="toggleAuthMode('register')"><i class="fa-solid fa-user-plus me-2"></i>Yeni Kayıt</button>
+                    </li>
+                </ul>
+
+
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">T.C. Kimlik No</label>
+                        <input type="text" id="loginNationalId" class="form-control" maxlength="11" placeholder="11 haneli T.C. Kimlik numaranızı giriniz" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Adınız ve Soyadınız</label>
+                        <input type="text" id="loginFirstName" class="form-control" placeholder="Adınızı ve soyadınızı giriniz" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Parola</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Parolanızı giriniz" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-3 fw-bold"><i class="fa-solid fa-sign-in-alt me-2"></i>Giriş Yap</button>
+                </form>
+
+               
+                <form id="registerForm" class="d-none">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">T.C. Kimlik No</label>
+                            <input type="text" id="regNationalId" class="form-control" maxlength="11" placeholder="11 Haneli T.C." required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Telefon Numarası</label>
+                            <input type="text" id="regPhone" class="form-control" placeholder="05XXXXXXXXX" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Ad</label>
+                            <input type="text" id="regFirstName" class="form-control" placeholder="Adınız" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Soyad</label>
+                            <input type="text" id="regLastName" class="form-control" placeholder="Soyadınız" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Cinsiyet</label>
+                            <select id="regGender" class="form-select" required>
+                                <option value="">-- Seçiniz --</option>
+                                <option value="Kadın">Kadın</option>
+                                <option value="Erkek">Erkek</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Parola</label>
+                            <input type="password" id="regPassword" class="form-control" placeholder="Güçlü bir parola" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 py-3 fw-bold mt-4"><i class="fa-solid fa-user-check me-2"></i>Kayıt Ol</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+  
+    <div id="mainDashboard" class="d-none animated-tab">
+
+        
+        <div class="row g-3 mb-4">
+           
+            <div class="col-6 col-lg-3">
+                <div class="stat-card d-flex align-items-center justify-content-between">
+                    <div>
+                        <small class="text-muted fw-bold tracking-wide" style="font-size: 11px;">AKTİF RANDEVULAR</small>
+                        <h3 class="m-0 fw-extrabold text-primary mt-1" id="statActiveCount">0</h3>
+                    </div>
+                    <div class="stat-icon-wrapper text-primary" style="background-color: #fce7f3;">
+                        <i class="fa-solid fa-calendar-check fa-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-lg-3">
+                <div class="stat-card d-flex align-items-center justify-content-between">
+                    <div>
+                        <small class="text-muted fw-bold tracking-wide" style="font-size: 11px;">GEÇMİŞ MUAYENELER</small>
+                        <h3 class="m-0 fw-extrabold text-secondary mt-1" id="statCompletedCount">0</h3>
+                    </div>
+                    <div class="stat-icon-wrapper text-secondary" style="background-color: #f1f5f9;">
+                        <i class="fa-solid fa-clock-rotate-left fa-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-6 col-lg-3">
+                <div class="stat-card d-flex align-items-center justify-content-between">
+                    <div>
+                        <small class="text-muted fw-bold tracking-wide" style="font-size: 11px;">E-REÇETEDEKİ İLAÇLAR</small>
+                        <h3 class="m-0 fw-extrabold text-danger mt-1" id="statPrescriptionCount">0 Adet</h3>
+                    </div>
+                    <div class="stat-icon-wrapper text-danger" style="background-color: #ffe4e6;">
+                        <i class="fa-solid fa-pills fa-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="col-6 col-lg-3">
+                <div class="stat-card d-flex align-items-center justify-content-between">
+                    <div>
+                        <small class="text-muted fw-bold tracking-wide" style="font-size: 11px;">KAYITLI MERKEZ</small>
+                        <h6 class="m-0 fw-bold text-dark mt-2" style="font-size: 13px;">Etlik Şehir Hast.</h6>
+                    </div>
+                    <div class="stat-icon-wrapper text-info" style="background-color: #e0f2fe;">
+                        <i class="fa-solid fa-hospital-user fa-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav nav-pills nav-fill mb-4" id="mhrsTabs">
+            <li class="nav-item">
+                <button class="nav-link active" onclick="switchTab('profileTab', this)"><i class="fa-solid fa-id-card me-2"></i>Hasta Bilgileri</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" onclick="switchTab('appointmentTab', this)"><i class="fa-solid fa-calendar-plus me-2"></i>Randevu Al</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" onclick="switchTab('myAppointmentsTab', this)"><i class="fa-solid fa-calendar-check me-2"></i>Randevularım</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" onclick="switchTab('prescriptionsTab', this)"><i class="fa-solid fa-pills me-2"></i>İlaçlarım</button>
+            </li>
+        </ul>
+
+       
+        <div id="profileTab" class="tab-content animated-tab">
+            <div class="card card-custom p-4 p-md-5">
+                <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
+                    <h5 class="card-title text-primary m-0 fw-bold"><i class="fa-solid fa-user-check me-2"></i>Kimlik ve İletişim Bilgileri</h5>
+                    <button class="btn btn-outline-primary btn-sm fw-bold rounded-pill px-3" onclick="openProfileEditModal()"><i class="fa-solid fa-user-pen me-1"></i> Bilgilerimi Güncelle</button>
+                </div>
+                <div class="row g-4 fs-6">
+                    <div class="col-md-6"><i class="fa-solid fa-id-card text-muted me-2"></i><b class="text-secondary">T.C. Kimlik No:</b> <span id="profNationalId" class="fw-bold text-dark ms-2"></span></div>
+                    <div class="col-md-6"><i class="fa-solid fa-user text-muted me-2"></i><b class="text-secondary">Ad Soyad:</b> <span id="profFullName" class="fw-bold text-dark ms-2"></span></div>
+                    <div class="col-md-6"><i class="fa-solid fa-venus-mars text-muted me-2"></i><b class="text-secondary">Cinsiyet:</b> <span id="profGender" class="fw-bold text-dark ms-2">Belirtilmedi</span></div>
+                    <div class="col-md-6"><i class="fa-solid fa-phone text-muted me-2"></i><b class="text-secondary">Telefon Numarası:</b> <span id="profPhone" class="fw-bold text-dark ms-2"></span></div>
+                    <div class="col-md-12"><i class="fa-solid fa-hospital-user text-muted me-2"></i><b class="text-secondary">Kayıtlı Hastane:</b> <span class="fw-bold text-dark ms-2">Ankara Etlik Şehir Hastanesi</span></div>
+                </div>
+            </div>
+        </div>
+
+       
+        <div id="appointmentTab" class="tab-content d-none animated-tab">
+            <div class="card card-custom p-4 p-md-5">
+                <h5 class="card-title text-primary border-bottom pb-3 mb-4 fw-bold"><i class="fa-solid fa-clinic-medical me-2"></i>Poliklinik ve Doktor Seçimi</h5>
+                
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">İl</label>
+                        <input type="text" class="form-control" value="Ankara" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Hastane</label>
+                        <input type="text" class="form-control" value="Ankara Etlik Şehir Hastanesi" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Poliklinik / Bölüm</label>
+                        <select id="departmentSelect" class="form-select" onchange="loadDoctorsByDepartment()">
+                            <option value="">-- Bölüm Seçiniz --</option>
+                            <option value="Dahiliye">İç Hastalıkları (Dahiliye)</option>
+                            <option value="Goz">Göz Hastalıkları</option>
+                            <option value="Kardiyoloji">Kardiyoloji</option>
+                            <option value="KBB">Kulak Burun Boğaz (KBB)</option>
+                            <option value="Noroloji">Nöroloji</option>
+                            <option value="Ortopedi">Ortopedi ve Travmatoloji</option>
+                            <option value="Cildiye">Dermatoloji (Cildiye)</option>
+                            <option value="Psikiyatri">Ruh Sağlığı (Psikiyatri)</option>
+                            <option value="Cocuk">Çocuk Sağlığı ve Hastalıkları</option>
+                            <option value="GenelCerrahi">Genel Cerrahi</option>
+                            <option value="FizikTedavi">Fiziksel Tıp ve Rehabilitasyon</option>
+                            <option value="Uroloji">Üroloji</option>
+                            <option value="Göğüs">Göğüs Hastalıkları</option>
+                            <option value="BeyinCerrahi">Beyin ve Sinir Cerrahisi (Nöroşirürji)</option>
+                            <option value="Enfeksiyon">Enfeksiyon Hastalıkları</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Doktor</label>
+                        <select id="doctorSelect" class="form-select" disabled onchange="onDoctorSelected()">
+                            <option value="">-- Önce Bölüm Seçiniz --</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-12 d-none mt-4" id="datePickerArea">
+                        <label class="form-label fw-bold text-primary"><i class="fa-solid fa-calendar-day me-2"></i>Randevu Tarihi Seçiniz</label>
+                        <input type="date" id="appointmentDateInput" class="form-control" onchange="showAppointmentSlots()">
+                    </div>
+                </div>
+
+                <div id="slotsArea" class="mt-4 d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold m-0"><i class="fa-solid fa-clock me-2"></i>Uygun Randevu Saatleri</h6>
+                        <div class="small">
+                            <span class="badge text-danger border border-danger me-2" style="background-color: #ffe4e6;"><i class="fa-solid fa-circle text-danger me-1"></i>Uygun</span>
+                            <span class="badge bg-secondary"><i class="fa-solid fa-ban me-1"></i>Dolu</span>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-1" id="timeSlotsContainer"></div>
+                    <button class="btn btn-success mt-4 w-100 fw-bold py-3" onclick="confirmAppointment()"><i class="fa-solid fa-check-circle me-2"></i>Randevuyu Onayla ve Al</button>
+                </div>
+            </div>
+        </div>
+
+      
+        <div id="myAppointmentsTab" class="tab-content d-none animated-tab">
+            <div class="card card-custom p-4 p-md-5">
+                <h5 class="card-title text-primary border-bottom pb-3 mb-4 fw-bold"><i class="fa-solid fa-list-check me-2"></i>Randevu ve Muayene Geçmişiniz</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Tarih / Saat</th>
+                                <th>Bölüm</th>
+                                <th>Doktor</th>
+                                <th>Durum</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myAppointmentsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+      
+        <div id="prescriptionsTab" class="tab-content d-none animated-tab">
+            <div class="card card-custom p-4 p-md-5">
+                <h5 class="card-title text-primary border-bottom pb-3 mb-4 fw-bold"><i class="fa-solid fa-file-prescription me-2"></i>E-Reçete ve İlaç Bilgilerim</h5>
+                <div id="prescriptionsContainer"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header bg-danger text-white rounded-top-4">
+                <h5 class="modal-title fw-bold"><i class="fa-solid fa-user-pen me-2"></i>Profil Bilgilerini Güncelle</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="editProfileForm">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">T.C. Kimlik No</label>
+                        <input type="text" id="editNationalId" class="form-control" disabled>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="form-label fw-bold">Ad</label>
+                            <input type="text" id="editFirstName" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label fw-bold">Soyad</label>
+                            <input type="text" id="editLastName" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Telefon Numarası</label>
+                        <input type="text" id="editPhone" class="form-control" placeholder="05XXXXXXXXX" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Cinsiyet</label>
+                        <select id="editGender" class="form-select" required>
+                            <option value="Kadın">Kadın</option>
+                            <option value="Erkek">Erkek</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Parola</label>
+                        <input type="password" id="editPassword" class="form-control" placeholder="Yeni parolanızı giriniz" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 py-3 fw-bold mt-2"><i class="fa-solid fa-floppy-disk me-2"></i>Değişiklikleri Kaydet</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="doctorReviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header bg-warning text-dark rounded-top-4">
+                <h5 class="modal-title fw-bold"><i class="fa-solid fa-star me-2"></i>Hekiminizi Değerlendirin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 text-center">
+                <div class="mb-3">
+                    <div class="p-3 bg-light rounded-3 border">
+                        <h6 class="fw-bold text-primary m-0" id="reviewDocName">Hekim Adı</h6>
+                        <small class="text-muted" id="reviewDeptName">Poliklinik</small>
+                    </div>
+                </div>
+
+                <label class="form-label fw-bold d-block text-secondary mb-2">Hizmet Puanınız</label>
+                <div class="star-rating mb-3 justify-content-center" id="starContainer">
+                    <i class="fa-solid fa-star" data-rating="1" onclick="setDoctorRating(1)"></i>
+                    <i class="fa-solid fa-star" data-rating="2" onclick="setDoctorRating(2)"></i>
+                    <i class="fa-solid fa-star" data-rating="3" onclick="setDoctorRating(3)"></i>
+                    <i class="fa-solid fa-star" data-rating="4" onclick="setDoctorRating(4)"></i>
+                    <i class="fa-solid fa-star" data-rating="5" onclick="setDoctorRating(5)"></i>
+                </div>
+                <input type="hidden" id="selectedDoctorRating" value="5">
+
+                <div class="mb-3 text-start">
+                    <label class="form-label fw-bold text-secondary">Görüş ve Değerlendirmeniz (Opsiyonel)</label>
+                    <textarea id="doctorReviewComment" class="form-control" rows="3" placeholder="Muayene deneyiminizi ve hekiminizle ilgili görüşlerinizi paylaşabilirsiniz..."></textarea>
+                </div>
+
+                <button type="button" class="btn btn-warning w-100 py-3 fw-bold shadow-sm" onclick="submitDoctorReview()">
+                    <i class="fa-solid fa-paper-plane me-2"></i>Değerlendirmeyi Gönder
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="toastContainer" class="toast-container-custom"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="/js/app.js"></script>
+
+</body>
+</html>

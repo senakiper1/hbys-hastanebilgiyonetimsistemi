@@ -1,0 +1,305 @@
+:root {
+    --primary-color: #db2777;
+    --primary-hover: #be185d;
+    --gradient-start: #f43f5e;
+    --gradient-end: #ec4899;
+    --bg-soft: #fff5f8;
+    --card-bg: #ffffff;
+    --text-main: #334155;
+    --text-muted: #64748b;
+    --border-color: #fce7f3;
+    --card-radius: 16px;
+}
+
+/* 🌙 KARANLIK MOD TEMA DEĞİŞKENLERİ 🌙 */
+body.dark-mode {
+    --bg-soft: #0f172a;
+    --card-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+}
+
+body { 
+    background-color: var(--bg-soft); 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 🌸 GLASSMORPHISM HEADER 🌸 */
+.mhrs-header { 
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); 
+    color: white; 
+    padding: 16px 0; 
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.3);
+}
+
+/* 🃏 KART TASARIMLARI 🃏 */
+.card-custom { 
+    border: 1px solid var(--border-color); 
+    border-radius: var(--card-radius); 
+    background: var(--card-bg) !important;
+    color: var(--text-main);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06); 
+    transition: all 0.3s ease;
+}
+
+/* 📊 İSTATİSTİK KARTLARI 📊 */
+.stat-card {
+    background: var(--card-bg);
+    color: var(--text-main);
+    border-radius: var(--card-radius);
+    padding: 22px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.stat-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 30px rgba(236, 72, 153, 0.15);
+}
+.stat-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 🎛️ SEKMELER VE NAVİGASYON 🎛️ */
+.nav-pills {
+    background: var(--card-bg);
+    padding: 8px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
+}
+.nav-pills .nav-link { 
+    color: var(--text-muted); 
+    font-weight: 700; 
+    border-radius: 12px;
+    padding: 12px 20px;
+    transition: all 0.25s ease;
+}
+.nav-pills .nav-link.active { 
+    background: linear-gradient(135deg, var(--gradient-start), var(--primary-color)) !important; 
+    color: white !important;
+    box-shadow: 0 6px 15px rgba(219, 39, 119, 0.35);
+}
+
+/* 🔘 BUTONLAR VE FORMLAR 🔘 */
+.btn-primary { 
+    background: linear-gradient(135deg, #ec4899, #db2777); 
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(219, 39, 119, 0.25);
+    transition: all 0.2s ease;
+}
+.btn-primary:hover { 
+    background: linear-gradient(135deg, #db2777, #be185d);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(219, 39, 119, 0.35);
+}
+.btn-success { 
+    background: linear-gradient(135deg, #f43f5e, #e11d48); 
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
+}
+.btn-success:hover { 
+    background: linear-gradient(135deg, #e11d48, #be123c);
+    transform: translateY(-1px);
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    padding: 11px 16px;
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border: 1.5px solid var(--border-color);
+    transition: all 0.2s;
+}
+.form-control:focus, .form-select:focus {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(219, 39, 119, 0.15);
+}
+body.dark-mode .form-control:disabled {
+    background-color: #334155;
+    color: #94a3b8;
+}
+
+/* 👤 AVATAR STİLİ 👤 */
+.user-avatar {
+    width: 44px;
+    height: 44px;
+    background: #ffffff;
+    color: var(--primary-color);
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ⏰ SAAT SLOTLARI ⏰ */
+.time-slot { 
+    cursor: pointer; 
+    border: 2px solid var(--border-color); 
+    color: var(--primary-color); 
+    background-color: var(--card-bg);
+    border-radius: 12px; 
+    padding: 12px; 
+    text-align: center; 
+    font-weight: 700;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+.time-slot:hover:not(.disabled) { 
+    background-color: rgba(219, 39, 119, 0.1); 
+    border-color: #f472b6;
+    transform: translateY(-3px);
+}
+.time-slot.active { 
+    background: linear-gradient(135deg, #ec4899, #db2777) !important; 
+    color: white !important; 
+    border-color: #be185d !important;
+    box-shadow: 0 8px 20px rgba(219, 39, 119, 0.4);
+}
+.time-slot.disabled {
+    background-color: rgba(148, 163, 184, 0.2) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-muted) !important;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+/* 🌙 KARANLIK MOD TABLO VE MODAL AYARLARI 🌙 */
+body.dark-mode .table {
+    color: var(--text-main);
+    border-color: var(--border-color);
+}
+body.dark-mode .table-light {
+    background-color: #334155;
+    color: #f8fafc;
+}
+body.dark-mode .modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+}
+
+.animated-tab { animation: fadeInUp 0.4s ease-out forwards; }
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🌸 ARKA PLAN DEKORATİF İKONLARI 🌸 */
+.bg-decor {
+    position: fixed;
+    color: rgba(236, 72, 153, 0.12);
+    z-index: 0;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+}
+body.dark-mode .bg-decor {
+    color: rgba(244, 63, 94, 0.08);
+}
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(8deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* ⭐ DOKTOR DEĞERLENDİRME YILDIZLARI ⭐ */
+.star-rating {
+    font-size: 28px;
+    color: #cbd5e1;
+    cursor: pointer;
+    display: inline-flex;
+    gap: 6px;
+    direction: ltr;
+}
+.star-rating .fa-star {
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.star-rating .fa-star:hover,
+.star-rating .fa-star.active {
+    color: #f59e0b;
+    transform: scale(1.15);
+}
+
+/* 🔔 BİLDİRİM ÇANI VE DROPDOWN STİLLERİ 🔔 */
+.notification-dropdown {
+    width: 320px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    overflow: hidden;
+}
+.notification-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    color: var(--text-main);
+    text-decoration: none;
+}
+.notification-item:hover {
+    background-color: rgba(219, 39, 119, 0.06);
+}
+.notification-item.unread {
+    background-color: rgba(244, 63, 94, 0.05);
+}
+.notif-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* 🍞 SAĞ ALT CANLI TOAST BİLDİRİMİ 🍞 */
+.toast-container-custom {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1080;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.toast-custom {
+    background: var(--card-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    min-width: 280px;
+    max-width: 360px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideInRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+#authSection, #mainDashboard { position: relative; z-index: 1; }
