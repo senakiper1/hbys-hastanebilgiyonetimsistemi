@@ -29,16 +29,13 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "patient_national_id", referencedColumnName = "national_id")
     private Patient patient;
-    // bir hastanin cok sayida randevusu olabilir
     
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
-    // bir doktorun cok sayida randevusu olabilir
     
     @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true)
     private MedicalRecord medicalRecord;
-    // bir randevuya ait bir tibbi kayıt bulunur
 
     public Appointment() {
     }
@@ -87,11 +84,6 @@ public class Appointment {
         return medicalRecord; 
     }
 
-    /**
-     * Çift yönlü OneToOne ilişki yardımcısı:
-     * Appointment nesnesine MedicalRecord atandığında, MedicalRecord'un içindeki
-     * appointment referansı da otomatik olarak güncellenir.
-     */
     public void setMedicalRecord(MedicalRecord medicalRecord) {
         if (medicalRecord == null) {
             if (this.medicalRecord != null) {
