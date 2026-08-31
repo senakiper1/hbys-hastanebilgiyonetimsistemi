@@ -3,12 +3,11 @@ package dto;
 import java.time.LocalDateTime;
 
 public class AppointmentDto {
-// randevu listelerken
 	
     private Long id;
     private LocalDateTime appointmentDate;
     private String status;
-    private String patientNationalId; // T.C. Kimlik No
+    private String patientNationalId; 
     private Long doctorId;
     private String doctorName;
     private String department;
