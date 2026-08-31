@@ -3,7 +3,6 @@ package dto;
 import java.time.LocalDateTime;
 
 public class CreateAppointmentDto {
-// randevu olustururken gerekli bilgileri toplar
     private String patientNationalId; 
     private Long doctorId;
     private LocalDateTime appointmentDate;
