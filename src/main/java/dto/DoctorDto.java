@@ -1,8 +1,6 @@
 package dto;
 
 public class DoctorDto {
-
-	// doctor bilgilerini api uzerinden dısa aktarır
 	
     private Long id;
     private String firstName;
