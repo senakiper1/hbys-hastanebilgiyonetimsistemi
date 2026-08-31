@@ -1,11 +1,8 @@
 package dto;
-// entity nesnelerini dogrudan dıs dunyaya acmamak 
-// hassas verileri gizlemek
-// istemciden sadece gerekli alanlari almak icin 
 
 public class PatientDto {
-// istemciye dönen hasta verisi (icinde password yok)
-    private String nationalId;   // T.C. Kimlik No
+
+    private String nationalId;  
     private String firstName;
     private String lastName;
     private String phoneNumber;
