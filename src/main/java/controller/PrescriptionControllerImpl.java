@@ -21,7 +21,6 @@ public class PrescriptionControllerImpl {
     @Autowired
     private IPrescriptionService prescriptionService;
 
-    // 2. Hastanın Kendi Reçetelerini TC ile Çekmesi İçin Endpoint
     @GetMapping("/listByPatient/{nationalId}")
     public ResponseEntity<List<PrescriptionDto>> getPrescriptionsByPatient(@PathVariable String nationalId) {
         return ResponseEntity.ok(prescriptionService.getPrescriptionsByPatientNationalId(nationalId));
