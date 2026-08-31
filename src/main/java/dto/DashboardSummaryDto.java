@@ -1,7 +1,6 @@
 package dto;
 
 public class DashboardSummaryDto {
-// istatistik kartlari icin toplu veri tasır
     private long totalPatients;
     private long totalDoctors;
     private long totalAppointments;
