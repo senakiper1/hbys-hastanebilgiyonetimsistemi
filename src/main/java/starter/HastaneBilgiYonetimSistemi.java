@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"controller", "services", "repository", "exception"})
-@EntityScan(basePackages = "entities") // Entity'lerin bulunduğu paket adı
-@EnableJpaRepositories(basePackages = "repository") // Repository'lerin bulunduğu paket adı
+@EntityScan(basePackages = "entities") 
+@EnableJpaRepositories(basePackages = "repository") 
 public class HastaneBilgiYonetimSistemi {
 
     public static void main(String[] args) {
