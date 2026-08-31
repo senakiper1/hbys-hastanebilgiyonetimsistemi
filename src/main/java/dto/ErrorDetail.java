@@ -3,7 +3,7 @@ package dto;
 import java.time.LocalDateTime;
 
 public class ErrorDetail {
-// hata durumlarında istemciye dönen hata JSON nesnesidir
+
     private String message;
     private int statusCode;
     private LocalDateTime timestamp;
