@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class Patient {
 
     @Id
-    @Column(name = "national_id") // kimlik no
+    @Column(name = "national_id") 
     private String nationalId;
     
     private String firstName;
