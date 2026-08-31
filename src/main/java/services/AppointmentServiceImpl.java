@@ -50,7 +50,6 @@ public class AppointmentServiceImpl implements IAppointmentService {
 
         Appointment saved = appointmentRepository.save(appointment);
 
-        // Dönüş DTO'su oluşturma
         AppointmentDto responseDto = new AppointmentDto();
         responseDto.setId(saved.getId());
         responseDto.setAppointmentDate(saved.getAppointmentDate());
@@ -58,7 +57,6 @@ public class AppointmentServiceImpl implements IAppointmentService {
         responseDto.setPatientNationalId(patient.getNationalId());
         responseDto.setDoctorId(doctor.getId());
         
-        // Doktorun ad-soyad ve bölümünü birleştirip DTO'ya set ediyoruz:
         responseDto.setDoctorName(doctor.getFirstName() + " " + doctor.getLastName());
         responseDto.setDepartment(doctor.getDepartment());
 
@@ -81,7 +79,6 @@ public class AppointmentServiceImpl implements IAppointmentService {
                     
                     if (app.getDoctor() != null) {
                         dto.setDoctorId(app.getDoctor().getId());
-                        // Veritabanındaki ilişkili doktor nesnesinden ad-soyad ve bölüm bilgisini çekiyoruz:
                         dto.setDoctorName(app.getDoctor().getFirstName() + " " + app.getDoctor().getLastName());
                         dto.setDepartment(app.getDoctor().getDepartment());
                     }
