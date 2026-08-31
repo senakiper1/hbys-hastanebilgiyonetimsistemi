@@ -1,7 +1,7 @@
 package dto;
 
 public class LoginRequestDto {
-// giris ekranından gelen(istenen) bilgileri tasır 
+
     private String nationalId;
     private String firstName;
     private String password;
