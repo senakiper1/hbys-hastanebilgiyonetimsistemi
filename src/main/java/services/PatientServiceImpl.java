@@ -105,7 +105,6 @@ public class PatientServiceImpl implements IPatientService {
         return responseDtos;
     }
 
-    // burasina tekrar bak 
     @Override
     public PatientDto login(LoginRequestDto loginRequestDto) {
         Patient patient = patientRepository.findById(loginRequestDto.getNationalId())
