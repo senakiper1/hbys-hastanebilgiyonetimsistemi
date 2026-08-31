@@ -1,7 +1,7 @@
 package dto;
 
 public class PrescriptionDto {
-// e recete detaylarını frontende iletir
+
     private Long id;
     private String medicineName;
     private String dosage;
